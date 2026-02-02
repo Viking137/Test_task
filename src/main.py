@@ -170,6 +170,43 @@ def main():
     plt.savefig(plot_path3)
     plt.close(fig3)
     print(f"Velocity plots saved to {plot_path3}")
+
+    # --- File 4: 3D trajectory ---
+    fig4 = plt.figure(figsize=(12, 12))
+    ax4 = fig4.add_subplot(111, projection='3d')
+    ax4.set_title('3D Trajectories (ECI)', fontsize=16)
+
+    ax4.plot(results_df['r_sc_x'], results_df['r_sc_y'], results_df['r_sc_z'], label='Spacecraft Trajectory')
+    ax4.plot(results_df['r_lv_x'], results_df['r_lv_y'], results_df['r_lv_z'], label='Launch Vehicle Trajectory', linestyle='--')
+
+    ax4.scatter(results_df['r_sc_x'].iloc[0], results_df['r_sc_y'].iloc[0], results_df['r_sc_z'].iloc[0], color='green', marker='o', s=100, label='Start Point')
+    ax4.scatter(results_df['r_sc_x'].iloc[-1], results_df['r_sc_y'].iloc[-1], results_df['r_sc_z'].iloc[-1], color='red', marker='x', s=100, label='SC End Point')
+    ax4.scatter(results_df['r_lv_x'].iloc[-1], results_df['r_lv_y'].iloc[-1], results_df['r_lv_z'].iloc[-1], color='magenta', marker='x', s=100, label='LV End Point')
+
+    ax4.set_xlabel('X (m)')
+    ax4.set_ylabel('Y (m)')
+    ax4.set_zlabel('Z (m)')
+    ax4.legend()
+    ax4.grid(True)
+    
+    max_range = np.array([
+        results_df['r_sc_x'].max()-results_df['r_sc_x'].min(), 
+        results_df['r_sc_y'].max()-results_df['r_sc_y'].min(), 
+        results_df['r_sc_z'].max()-results_df['r_sc_z'].min()
+    ]).max() / 2.0
+
+    mid_x = (results_df['r_sc_x'].max()+results_df['r_sc_x'].min()) * 0.5
+    mid_y = (results_df['r_sc_y'].max()+results_df['r_sc_y'].min()) * 0.5
+    mid_z = (results_df['r_sc_z'].max()+results_df['r_sc_z'].min()) * 0.5
+    
+    ax4.set_xlim(mid_x - max_range, mid_x + max_range)
+    ax4.set_ylim(mid_y - max_range, mid_y + max_range)
+    ax4.set_zlim(mid_z - max_range, mid_z + max_range)
+
+    plot_path4 = os.path.join(output_dir, "simulation_plot_3d_trajectory.png")
+    plt.savefig(plot_path4)
+    plt.close(fig4)
+    print(f"3D trajectory plot saved to {plot_path4}")
     
 
 if __name__ == "__main__":
