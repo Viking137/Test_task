@@ -28,14 +28,12 @@
 ### 2.1. Уравнения движения
 
 Система уравнений движения, согласно второму закону Ньютона:
-```latex
-$$
-\begin{cases}
- m_{sc} \frac{d^2\vec{r}_{sc}}{dt^2} = \vec{F}_{g, sc} + \vec{F}_{spring} \\
- m_{lv} \frac{d^2\vec{r}_{lv}}{dt^2} = \vec{F}_{g, lv} - \vec{F}_{spring}
-\end{cases}
-$$
-```
+
+
+ $$ m_{sc} \frac{d^2\vec{r}_{sc}}{dt^2} = \vec{F}_{g, sc} + \vec{F}_{spring} $$
+$$ m_{lv} \frac{d^2\vec{r}_{lv}}{dt^2} = \vec{F}_{g, lv} - \vec{F}_{spring} $$
+
+
 *   **Гравитационная сила**: `\vec{F}_{g} = - \frac{\mu \cdot m_{body}}{|\vec{r}|^3} \vec{r}`
 *   **Сила пружины** (закон Гука): `\vec{F}_{spring} = k \cdot (L_0 - d) \cdot \frac{\vec{r}_{rel}}{d}`, где `k` — жёсткость, `L_0` — длина в недеформированном состоянии, `d` — текущая длина. Сила обнуляется, если `d >= L_0` или если `d` достигает механического упора (`L_{final}`).
 
