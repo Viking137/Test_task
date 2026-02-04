@@ -17,7 +17,7 @@ def _calculate_spring_force(
     r_rel = r_sc - r_lv
     distance = np.linalg.norm(r_rel)
 
-    if distance >= l_final_m:
+    if distance >= l_natural_m or distance >= l_final_m:
         return np.array([0.0, 0.0, 0.0])
 
     force_magnitude = spring.stiffness_Npm * (l_natural_m - distance)
