@@ -93,7 +93,8 @@ def run_simulation(sim_input: SimulationInput) -> object:
         args=ode_args,
         dense_output=True,  
         rtol=1e-9,          
-        atol=1e-12          
+        atol=1e-12,  
+        max_step=0.01        
     )
 
     return solution
